@@ -67,8 +67,12 @@ namespace NexusForever.Shared.Network.Message
         ServerEntityDestory             = 0x0355,
         ServerQuestInit                 = 0x035F,
         ClientEmote                     = 0x037E,
+        ServerFriendshipAccountUpdate   = 0x0399,
+        ServerFriendshipAccountList     = 0x03A3,
+        Server03A6                      = 0x03A6, // friendship related
         Server03AA                      = 0x03AA, // friendship account related
-        Server03BE                      = 0x03BE, // friendship related
+        ServerFriendshipAdd             = 0x03B5,
+        ServerFriendshipList            = 0x03BE,
         ServerRealmInfo                 = 0x03DB,
         ServerRealmEncrypted            = 0x03DC,
         ClientCheat                     = 0x03E0,

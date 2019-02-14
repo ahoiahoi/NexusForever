@@ -223,6 +223,59 @@ namespace NexusForever.WorldServer.Game.Entity
             PathManager.SendPathLogPacket();
             BuybackManager.SendBuybackItems(this);
 
+            // Send Server03BE ServerFriendshipList
+            var identity = new CharacterIdentity
+            {
+                RealmId = WorldServer.RealmId,
+                CharacterId = 21
+            };
+            var identity2 = new CharacterIdentity
+            {
+                RealmId = WorldServer.RealmId,
+                CharacterId = 20
+            };
+
+            var friendship = new Friendship
+            {
+                FriendshipId = 1,
+                IdentityData = identity,
+                Note = "asdf",
+                Type = 5
+            };
+
+            var friendship2 = new Friendship
+            {
+                FriendshipId = 2,
+                IdentityData = identity,
+                Note = "asdf",
+                Type = 5
+            };
+
+            var Friendships = new ServerFriendshipList();
+            Friendships.Friendships.Add(friendship);
+            Friendships.Friendships.Add(friendship2);
+            Session.EnqueueMessageEncrypted(Friendships);
+
+            // Send Server03AA FriendshipAccountPersonalStatusUpdate
+            // Send Server03A6 FriendshipAccountPersonalStatusUpdate
+            // Send Server03A3 FriendshipAccountFriendsRecieved
+            
+            var serverFriendshipAccountList = new ServerFriendshipAccountList();
+
+            var friendListData = new ServerFriendshipAccountList.FriendList
+            {
+                AccountIdFriend = 201001505,
+                FriendRecordId = 685992,
+                PublicNote = "",
+                DaysSinceLastLogin = 3210333536,
+                PrivateNote = "",
+                DisplayName = "ahoi",
+                Unknown0 = 3
+            };
+            
+            serverFriendshipAccountList.FriendListData.Add(friendListData);
+//            Session.EnqueueMessageEncrypted(serverFriendshipAccountList);
+
             Session.EnqueueMessageEncrypted(new ServerHousingNeighbors());
             
             Session.EnqueueMessageEncrypted(new ServerPathLog());
